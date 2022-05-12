@@ -16,6 +16,12 @@ app.get('/sanity', (req, res) => res.send('OK'));
 
 let parsedData;
 
+app.get('/recipes/:ingredient', (req, res) => {
+  const param = req.params.ingredient;
+  callTheAPI(param);
+  res.send(parsedData);
+});
+
 const callTheAPI = (param) => {
   urllib.request(
     `https://recipes-goodness.herokuapp.com/recipes/${param}`,
@@ -35,14 +41,6 @@ const callTheAPI = (param) => {
     }
   );
 };
-
-app.get('/recipes/:ingredient', (req, res) => {
-  const param = req.params.ingredient;
-  callTheAPI(param);
-  setTimeout(() => {
-    res.send(parsedData);
-  }, 500);
-});
 
 const PORT = 8080;
 app.listen(PORT, console.log('Listening on', PORT));

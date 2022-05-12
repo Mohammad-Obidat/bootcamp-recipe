@@ -16,14 +16,11 @@ const fetchData = () => {
   let ingredients = $('#Input').val().toLowerCase();
   $.get(`/recipes/${ingredients}`, (recipesData) => {
     renderData.render(recipesData);
+    addEventListener();
   });
   $('#Input').val('');
 };
 
 const displayDataBtn = () => {
   fetchData();
-
-  setTimeout(() => {
-    addEventListener();
-  }, '500');
 };
