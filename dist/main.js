@@ -12,15 +12,19 @@ const addEventListener = () => {
   });
 };
 
-const fetchData = () => {
-  let ingredients = $('#Input').val().toLowerCase();
+const fetchData = (ingredients) => {
   $.get(`/recipes/${ingredients}`, (recipesData) => {
-    renderData.render(recipesData);
-    addEventListener();
+    if (recipesData !== '') {
+      renderData.render(recipesData);
+      addEventListener();
+    } else {
+      fetchData(ingredients);
+    }
   });
   $('#Input').val('');
 };
 
 const displayDataBtn = () => {
-  fetchData();
+  let ingredients = $('#Input').val().toLowerCase();
+  fetchData(ingredients);
 };
