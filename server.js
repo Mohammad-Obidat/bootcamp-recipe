@@ -9,7 +9,8 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 
 let parsedData;
 
-const callTheAPI = (param) => {
+app.get('/recipes/:ingredient', (req, res) => {
+  const param = req.params.ingredient;
   urllib.request(
     `https://recipes-goodness.herokuapp.com/recipes/${param}`,
     function (err, data, response) {
@@ -25,14 +26,9 @@ const callTheAPI = (param) => {
           ingredients: recipes.ingredients,
         };
       });
+      res.send(parsedData);
     }
   );
-};
-
-app.get('/recipes/:ingredient', (req, res) => {
-  const param = req.params.ingredient;
-  callTheAPI(param);
-  res.send(parsedData);
 });
 
 const PORT = 8080;
