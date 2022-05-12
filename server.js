@@ -16,9 +16,7 @@ app.get('/sanity', (req, res) => res.send('OK'));
 
 let parsedData;
 
-app.get('/recipes/:ingredient', (req, res) => {
-  const param = req.params.ingredient;
-
+const callTheAPI = (param) => {
   urllib.request(
     `https://recipes-goodness.herokuapp.com/recipes/${param}`,
     function (err, data, response) {
@@ -26,8 +24,7 @@ app.get('/recipes/:ingredient', (req, res) => {
         throw err;
       }
       response.body;
-      parsedData = JSON.parse(data).results;
-      parsedData = parsedData.map((recipes) => {
+      parsedData = JSON.parse(data).results.map((recipes) => {
         return {
           title: recipes.title,
           thumbnail: recipes.thumbnail,
@@ -37,6 +34,11 @@ app.get('/recipes/:ingredient', (req, res) => {
       });
     }
   );
+};
+
+app.get('/recipes/:ingredient', (req, res) => {
+  const param = req.params.ingredient;
+  callTheAPI(param);
   res.send(parsedData);
 });
 
