@@ -39,7 +39,9 @@ const callTheAPI = (param) => {
 app.get('/recipes/:ingredient', (req, res) => {
   const param = req.params.ingredient;
   callTheAPI(param);
-  res.send(parsedData);
+  setTimeout(() => {
+    res.send(parsedData);
+  }, 500);
 });
 
 const PORT = 8080;
