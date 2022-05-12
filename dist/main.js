@@ -14,7 +14,7 @@ const addEventListener = () => {
 
 const fetchData = (ingredients) => {
   $.get(`/recipes/${ingredients}`, (recipesData) => {
-    if (recipesData !== '') {
+    if (recipesData !== '' || recipesData) {
       renderData.render(recipesData);
       addEventListener();
     } else {
