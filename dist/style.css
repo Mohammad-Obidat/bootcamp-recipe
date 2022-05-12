@@ -1,0 +1,69 @@
+body {
+  background-color: #ecf0f1;
+}
+
+/* search container */
+
+#searchContainer {
+  display: flex;
+  align-items: stretch;
+  height: 5vh;
+  padding: 1vmax;
+}
+
+#Input {
+  flex-grow: 8;
+  caret-color: red;
+}
+
+#submitBtn {
+  flex-grow: 2;
+  background: lightgreen;
+}
+
+#submitBtn:hover {
+  background: rgba(0, 128, 0, 0.575);
+}
+
+/* display container */
+
+#displayContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+  font-family: Palatino, Georgia, serif;
+}
+
+.displayData {
+  background-color: #e67e22;
+  padding: 20px;
+}
+
+.title {
+  display: block;
+}
+
+.recipesImg {
+  justify-items: center;
+  justify-self: center;
+  width: 10vmax;
+  height: 10vmax;
+  margin-top: 20px;
+  margin-left: 150px;
+  border-radius: 5px;
+  box-shadow: 5px 10px 10px #3b3b3b82;
+  cursor: pointer;
+}
+
+.ingredientsText {
+  padding-top: 20px;
+}
+
+.ulGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.li-Ingredients {
+  padding-right: 20px;
+}
