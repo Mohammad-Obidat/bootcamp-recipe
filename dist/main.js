@@ -1,5 +1,17 @@
 const renderData = new Renderer();
 
+const addEventListener = () => {
+  $('.recipesImg').on('click', function () {
+    let firstLi = $(this)
+      .closest('.displayData')
+      .find('.ulGrid')
+      .find('li:first-child')
+      .text();
+
+    alert(firstLi);
+  });
+};
+
 const fetchData = () => {
   let ingredients = $('#Input').val().toLowerCase();
   $.get(`/recipes/${ingredients}`, (recipesData) => {
@@ -10,10 +22,8 @@ const fetchData = () => {
 
 const displayDataBtn = () => {
   fetchData();
-};
 
-$('.recipesImg').on('click', function () {
-  alert('hi');
-});
-let firstLi = $('.li-Ingredients').closest('.ulGrid').first().val();
-console.log(firstLi);
+  setTimeout(() => {
+    addEventListener();
+  }, '500');
+};
